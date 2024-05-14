@@ -1,1 +1,21 @@
-<p>courses works!</p>
+<h2 class="section-title">Ramschema</h2>
+
+<div class="search-container">
+  <input class="search-input" type="text" placeholder="Sök ..." [(ngModel)]="searchTerm" (input)="applyFilter()">
+</div>
+
+<table class="courseslist">
+  <thead>
+    <tr>
+      <th>Kurskod</th>
+      <th>Kursnamn</th>
+      <th>Progression</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of filteredCoursesList" class="course-item">
+      <td>{{ course.courseCode }}</td>
+      <td>{{ course.courseName }}</td>
+    </tr>
+  </tbody>
+</table>
