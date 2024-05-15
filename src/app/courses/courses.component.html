@@ -1,21 +1,34 @@
-<h2 class="section-title">Ramschema</h2>
+<h2 class="section-title">Kurser</h2>
 
 <div class="search-container">
   <input class="search-input" type="text" placeholder="Sök ..." [(ngModel)]="searchTerm" (input)="applyFilter()">
 </div>
 
-<table class="courseslist">
+<div>{{ filteredCoursesList.length }} av {{ coursesList.length }}</div>
+
+<table class="course-list">
   <thead>
     <tr>
       <th>Kurskod</th>
+      <th>Ämneskod</th>
       <th>Kursnamn</th>
+      <th>Nivå</th>
       <th>Progression</th>
+      <th>Poäng</th>
+      <th>Ämne</th>
+      <th>Kursplan</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let course of filteredCoursesList" class="course-item">
       <td>{{ course.courseCode }}</td>
+      <td> {{ course.subjectCode }}</td>
       <td>{{ course.courseName }}</td>
+      <td>{{ course.level }}</td>
+      <td>{{ course.progression }}</td>
+      <td>{{ course.points }}</td>
+      <td>{{ course.subject }}</td>
+      <td>{{ course.syllabus }}</td>
     </tr>
   </tbody>
 </table>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Courses } from '../model/courses';
 import { CoursedataService } from '../services/coursedata.service';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './courses.component.scss'
 })
 
-export class CoursesComponent {
+export class CoursesComponent implements OnInit {
   coursesList: Courses[] = [];
   filteredCoursesList: Courses[] = [];
   searchTerm: string = "";
@@ -46,3 +46,4 @@ applyFilter() {
   );
 }
 }
+
