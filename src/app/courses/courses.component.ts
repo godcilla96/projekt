@@ -45,5 +45,8 @@ applyFilter() {
     course.courseName.toLowerCase().includes(this.searchTerm.toLowerCase())
   );
 }
-}
 
+saveToLocalStorage() {
+  localStorage.setItem('savedCourses', JSON.stringify(this.filteredCoursesList));
+}
+}

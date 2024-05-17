@@ -1,1 +1,9 @@
-<p>framework works!</p>
+<h2>Sparade kurser</h2>
+<div>
+  <ul>
+    <li *ngFor="let course of savedCourses">
+      {{ course.courseName }} ({{ course.courseCode }})
+      <button (click)="deleteCourse(course.courseCode)">Delete</button>
+    </li>
+  </ul>
+</div>
