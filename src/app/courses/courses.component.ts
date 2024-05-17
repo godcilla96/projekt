@@ -20,6 +20,8 @@ export class CoursesComponent implements OnInit {
   searchTerm: string = "";
   sortKey: string = "";
   sortAsc: boolean = true;
+  subjects: string[] = [];
+  selectedSubject: string = "";
 
   constructor(private coursedataservice : CoursedataService) {}
 
@@ -27,6 +29,7 @@ export class CoursesComponent implements OnInit {
     this.coursedataservice.getCourses().subscribe(data => {
       this.coursesList = data;
       this.filteredCoursesList = [... this.coursesList];
+      this.subjects = [...new Set(this.coursesList.map(course => course.subject))];
     });
   }
 
@@ -40,9 +43,11 @@ sortData(key: keyof CoursesComponent) {
 }
 
 applyFilter() {
-  this.filteredCoursesList = this.coursesList.filter(course =>
-    course.courseCode.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-    course.courseName.toLowerCase().includes(this.searchTerm.toLowerCase())
+  this.filteredCoursesList = this.coursesList.filter(course => 
+    (this.searchTerm === "" || 
+     course.courseCode.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
+     course.courseName.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
+    (this.selectedSubject === "" || course.subject === this.selectedSubject)
   );
 }
 

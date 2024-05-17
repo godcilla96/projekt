@@ -3,7 +3,13 @@
 <div class="search-container">
   <input class="search-input" type="text" placeholder="Sök ..." [(ngModel)]="searchTerm" (input)="applyFilter()">
 </div>
-
+<div>
+  <h3>Filtrera efter ämne</h3>
+  <input list="subjects" [(ngModel)]="selectedSubject" (input)="applyFilter()" placeholder="Välj ämne">
+  <datalist id="subjects">
+    <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+  </datalist>
+</div>
 <div>{{ filteredCoursesList.length }} av {{ coursesList.length }}</div>
 
 <table class="course-list">
@@ -29,7 +35,9 @@
       <td>{{ course.points }}</td>
       <td>{{ course.subject }}</td>
       <td>{{ course.syllabus }}</td>
-
+      <div>
+        <button (click)="saveToLocalStorage()">Spara</button>
+      </div>
     </tr>
   </tbody>
 </table>
