@@ -1,0 +1,78 @@
+$table-bg-color: #f5f5f5;
+$table-header-bg-color: #7e7c63;
+$table-header-text-color: #fff;
+$table-row-hover-bg-color: #e8e8e8;
+$table-border-color: #ddd;
+$accent-color: #7e7c63;
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $table-bg-color;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid $table-border-color;
+  }
+
+  thead {
+    background-color: $table-header-bg-color;
+    color: $table-header-text-color;
+
+    th {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: lighten($table-header-bg-color, 30%);
+      }
+
+      &:hover {
+        background-color: $table-row-hover-bg-color;
+      }
+    }
+
+    td {
+      button {
+        background-color: $accent-color;
+        border: none;
+        color: #fff;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
+      }
+    }
+  }
+}
+
+.delete-all-button {
+  background-color: $accent-color;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  margin-top: 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darken($accent-color, 10%);
+  }
+}
