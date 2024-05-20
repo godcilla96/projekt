@@ -10,7 +10,7 @@
     <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
   </datalist>
 </div>
-<div>{{ filteredCoursesList.length }} av {{ coursesList.length }}</div>
+<div>{{ filteredCoursesList.length }} av {{ coursesList.length }} kurser</div>
 
 <table class="course-list">
   <thead>
@@ -36,7 +36,7 @@
       <td>{{ course.subject }}</td>
       <td>{{ course.syllabus }}</td>
       <div>
-        <button (click)="saveToLocalStorage()">Spara</button>
+        <button (click)="saveToLocalStorage(course)">Spara</button>
       </div>
     </tr>
   </tbody>

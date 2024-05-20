@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, viewChild } from '@angular/core';
 import { Courses } from '../model/courses';
 import { CoursedataService } from '../services/coursedata.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 
 
 //komponenten och dess metadata
@@ -22,6 +23,7 @@ export class CoursesComponent implements OnInit {
   sortAsc: boolean = true;
   subjects: string[] = [];
   selectedSubject: string = "";
+
 
   constructor(private coursedataservice : CoursedataService) {}
 
@@ -51,7 +53,11 @@ applyFilter() {
   );
 }
 
-saveToLocalStorage() {
-  localStorage.setItem('savedCourses', JSON.stringify(this.filteredCoursesList));
+saveToLocalStorage(course: Courses) {
+  let savedCourses = JSON.parse(localStorage.getItem('savedCourses') || '[]');
+  if (!savedCourses.some((savedCourse: Courses) => savedCourse.courseCode === course.courseCode)) {
+    savedCourses.push(course);
+    localStorage.setItem('savedCourses', JSON.stringify(savedCourses));
+  }
 }
 }

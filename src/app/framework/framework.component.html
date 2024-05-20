@@ -2,8 +2,12 @@
 <div>
   <ul>
     <li *ngFor="let course of savedCourses">
-      {{ course.courseName }} ({{ course.courseCode }})
+      {{ course.courseName }} ({{ course.courseCode }}) {{ course.points }} hp
       <button (click)="deleteCourse(course.courseCode)">Delete</button>
     </li>
   </ul>
+</div>
+<button (click)="deleteAllCourses()">Radera alla sparade kurser</button>
+<div>
+  <h3>Total poäng: {{ totalPoints }} hp</h3>
 </div>
