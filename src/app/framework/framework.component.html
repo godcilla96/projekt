@@ -1,11 +1,23 @@
 <h2>Sparade kurser</h2>
 <div>
-  <ul>
-    <li *ngFor="let course of savedCourses">
-      {{ course.courseName }} ({{ course.courseCode }}) {{ course.points }} hp
-      <button (click)="deleteCourse(course.courseCode)">Delete</button>
-    </li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Kursnamn</th>
+        <th>Kurskod</th>
+        <th>Poäng</th>
+        <th>Åtgärder</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of savedCourses">
+        <td>{{ course.courseName }}</td>
+        <td>{{ course.courseCode }}</td>
+        <td>{{ course.points }} hp</td>
+        <td><button (click)="deleteCourse(course.courseCode)">Ta bort</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <button (click)="deleteAllCourses()">Radera alla sparade kurser</button>
 <div>
