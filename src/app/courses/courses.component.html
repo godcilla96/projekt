@@ -10,7 +10,7 @@
     <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
   </datalist>
 </div>
-<div>{{ filteredCoursesList.length }} av {{ coursesList.length }} kurser</div>
+<div>{{ startIndex }} - {{ endIndex }} av {{ totalFilteredCourses }} </div>
 
 <table class="course-list">
   <thead>
@@ -41,3 +41,9 @@
     </tr>
   </tbody>
 </table>
+
+<div class="pagination">
+  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Föregående</button>
+  <span>Sida {{ currentPage }} av {{ totalPages }}</span>
+  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Nästa</button>
+</div>

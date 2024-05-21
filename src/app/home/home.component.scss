@@ -1,5 +1,5 @@
-body {
-    overflow-x: hidden;
+.main {
+  text-align: center;
 }
 
 .img-container {
@@ -27,7 +27,9 @@ body {
     height: 150px; 
     padding: 25px;
     margin: 0 auto;
-    border: 2px solid black;
+    border: 2px solid rgb(207, 207, 207);
+    border-radius: 10px; 
+    overflow: hidden; 
   }
 
   .animated-gif {
@@ -56,6 +58,8 @@ body {
 
   .ikoner {
     display: flex;
+    justify-content: space-around; 
     padding: 25px;
     filter: grayscale(75%);
   }
+  
