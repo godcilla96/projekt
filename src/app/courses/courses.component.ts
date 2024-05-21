@@ -34,7 +34,6 @@ export class CoursesComponent implements OnInit {
       this.subjects = [...new Set(this.coursesList.map(course => course.subject))];
     });
   }
-
 sortData(key: keyof CoursesComponent) {
   if (this.sortKey === key) {
     this.sortAsc = !this.sortAsc;
