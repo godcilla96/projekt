@@ -1,16 +1,20 @@
-<h2 class="section-title">Kurser</h2>
+<div class = "img-container">
+  <img src = "assets/images/Programbilder/bild2.jpg">
+</div>
 
-<div class="search-container">
-  <input class="search-input" type="text" placeholder="Sök ..." [(ngModel)]="searchTerm" (input)="applyFilter()">
-</div>
-<div>
+<div class = "main">
+  <h2 class="section-title">Kurser</h2>
+    <div class="search-container">
+      <input class="search-input" type="text" placeholder="Sök ..." [(ngModel)]="searchTerm" (input)="applyFilter()">
+    </div>
+
   <h3>Filtrera efter ämne</h3>
-  <input list="subjects" [(ngModel)]="selectedSubject" (input)="applyFilter()" placeholder="Välj ämne">
-  <datalist id="subjects">
-    <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
-  </datalist>
+    <input list="subjects" [(ngModel)]="selectedSubject" (input)="applyFilter()" placeholder="Välj ämne">
+      <datalist id="subjects">
+        <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+      </datalist>
+  <div>{{ startIndex }} - {{ endIndex }} av {{ totalFilteredCourses }} </div>
 </div>
-<div>{{ startIndex }} - {{ endIndex }} av {{ totalFilteredCourses }} </div>
 
 <table class="course-list">
   <thead>
