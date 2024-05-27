@@ -1,8 +1,8 @@
 /* home.component.scss */
 .navbar {
-    background: #7e7c63; 
+    background: #ffffff; 
     padding: 1rem; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
   }
   
   .nav-list {
@@ -21,14 +21,14 @@
   //länkar
   .nav-item a {
     text-decoration: none;
-    color: #ecf0f1; 
+    color: #858585; 
     font-size: 1.2rem; 
     padding: 0.5rem 1rem;
     transition: color 0.3s; 
   }
   
   .nav-item a:hover {
-    color: #000000; 
+    color: black; 
   }
   
   .nav-item a::after {

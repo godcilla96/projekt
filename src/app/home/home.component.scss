@@ -9,6 +9,8 @@
     img {
       width: 100vw;
       display: block;
+      object-fit: cover;
+      height: auto;
     }
   
     &::after {
@@ -21,6 +23,18 @@
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
     }
   }
+
+          @media (min-width: 768px) {
+            .img-container img {
+                height: 400px; /* Fixed height for larger screens */
+            }
+        }
+
+        @media (max-width: 767px) {
+            .img-container img {
+                height: auto; /* Adjust automatically for smaller screens */
+            }
+        }
 
   .gif-container {
     width: 150px; 
@@ -58,8 +72,64 @@
 
   .ikoner {
     display: flex;
-    justify-content: space-around; 
-    padding: 25px;
-    filter: grayscale(75%);
-  }
-  
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+}
+
+.gif-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.gif-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gif-container:hover {
+    transform: scale(1.1);
+}
+
+.gif-container:hover img {
+    transform: scale(1.2);
+}
+
+.gif-container::after {
+    //content: attr(alt);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.gif-container:hover::after {
+    opacity: 1;
+}
+
+@media (max-width: 767px) {
+    .ikoner {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gif-container {
+        width: 100px;
+        height: 100px;
+    }
+}
