@@ -1,42 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .main {
-    text-align: center;
+  text-align: center;
+}
+
+.img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100vw;
+  display: block;
+  object-fit: cover;
+  height: auto;
+}
+
+.img-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Adjust height for gradient effect */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+@media (min-width: 768px) {
+  .img-container img {
+    height: 400px;
   }
-  
-
-  .img-container {
-    position: relative;
-    overflow: hidden;
-  
-    img {
-      width: 100vw;
-      display: block;
-      object-fit: cover;
-      height: auto;
-    }
-  
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100px; // Justerar höjden beroende på hur mycket avtoning du vill ha 
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    }
-  }
-
-          @media (min-width: 768px) {
-            .img-container img {
-                height: 400px; 
-            }
-        }
-
-        @media (max-width: 767px) {
-            .img-container img {
-                height: auto; 
-            }
-        }
-
+}
 
 .section-title {
   font-size: 2em;
@@ -49,7 +48,7 @@
 
 .search-input,
 input {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   font-size: 1em;
   box-sizing: border-box;
@@ -69,6 +68,14 @@ input {
   text-align: left;
 }
 
+.course-list tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.course-list tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
 .course-list th {
   background-color: #f2f2f2;
 }
@@ -80,7 +87,7 @@ input {
 
 .pagination {
   text-align: center;
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .pagination button {
@@ -88,7 +95,91 @@ input {
   margin: 0 5px;
 }
 
+.pagination button:hover {
+  cursor: pointer;
+}
+
 .pagination span {
   display: inline-block;
   padding: 10px;
+}
+
+.results {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+  .section-title {
+    font-size: 1.5em;
+  }
+
+  .course-list {
+    display: block;
+    width: 75vw;
+    overflow-x: auto;
+    margin: 0 auto;
+  }
+
+  .course-list th,
+  .course-list td {
+    padding: 4px;
+    font-size: 0.9em;
+  }
+
+  .course-list td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .course-list td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  .course-list th {
+    display: none;
+  }
+
+  .course-list tr {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd; 
+  }
+  .course-item button {
+    padding: 5px;
+    font-size: 0.9em;
+  }
+
+  .pagination button {
+    padding: 8px 16px;
+    font-size: 0.9em;
+  }
+
+  .pagination span {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main {
+    margin: 0 auto;
+    width: 50vw; /* Adjust the width as needed */
+  }
+
+  .course-list {
+    width: 70vw; /* Adjust the width as needed */
+    margin: 0 auto;
+  }
+
+  .img-container img {
+    width: 80vw;
+    margin: 0 auto;
+  }
 }

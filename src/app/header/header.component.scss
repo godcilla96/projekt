@@ -3,6 +3,7 @@
     background: #ffffff; 
     padding: 1rem; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+    position: sticky;
   }
   
   .nav-list {
@@ -21,10 +22,11 @@
   //länkar
   .nav-item a {
     text-decoration: none;
-    color: #858585; 
+    color: #000000; 
     font-size: 1.2rem; 
     padding: 0.5rem 1rem;
     transition: color 0.3s; 
+    font-style: bold;
   }
   
   .nav-item a:hover {
