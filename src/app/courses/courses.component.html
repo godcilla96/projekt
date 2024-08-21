@@ -19,14 +19,13 @@
 <table class="course-list">
   <thead>
     <tr>
-      <th>Kurskod</th>
-      <th>Kursnamn</th>
-      <th>Poäng</th>
-      <th>Ämne</th>
+      <th (click)="sortData('courseCode')">Kurskod</th>
+      <th (click)="sortData('courseName')">Kursnamn</th>
+      <th (click)="sortData('points')">Poäng</th>
+      <th (click)="sortData('subject')">Ämne</th>
       <th>Kursplan</th>
       <th>Spara</th>
     </tr>
-
   </thead>
   <tbody>
     <tr *ngFor="let course of filteredCoursesList" class="course-item">

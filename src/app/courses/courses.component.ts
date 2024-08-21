@@ -4,7 +4,8 @@ import { CoursedataService } from '../services/coursedata.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
+//sorteringsnycklar
+type SortableFields = 'courseCode' | 'courseName' | 'points' | 'subject';
 
 //komponenten och dess metadata
 @Component({
@@ -31,8 +32,11 @@ export class CoursesComponent implements OnInit {
   totalFilteredCourses: number = 0; 
   startIndex: number = 1; 
   endIndex: number = 50; 
+  
 
   constructor(private coursedataservice : CoursedataService) {}
+
+
 
   ngOnInit(): void {
     this.coursedataservice.getCourses().subscribe(data => {
@@ -42,30 +46,45 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-sortData(key: keyof CoursesComponent) {
-  if (this.sortKey === key) {
-    this.sortAsc = !this.sortAsc;
-  } else {
-    this.sortKey = key;
-    this.sortAsc = true;
+  sortData(key: SortableFields) {
+    if (this.sortKey === key) {
+      this.sortAsc = !this.sortAsc;
+    } else {
+      this.sortKey = key;
+      this.sortAsc = true;
+    }
+    this.applyFilter();
   }
-  this.applyFilter();
-}
-
-applyFilter() {
-  const filtered = this.coursesList.filter(course => 
-    (this.searchTerm === "" || 
-     course.courseCode.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
-     course.courseName.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
-    (this.selectedSubject === "" || course.subject === this.selectedSubject)
-  );
+  applyFilter() {
+    let filtered = this.coursesList.filter(course => 
+      (this.searchTerm === "" || 
+       course.courseCode.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
+       course.courseName.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
+      (this.selectedSubject === "" || course.subject === this.selectedSubject)
+    );
   
-  this.totalFilteredCourses = filtered.length;
-  this.totalPages = Math.ceil(this.totalFilteredCourses / this.itemsPerPage);
-  this.currentPage = 1;
-  this.updateIndexes();
-  this.filteredCoursesList = this.paginate(filtered);
-}
+    // kontrollerar sortKeys i coursesdata 
+    if (this.sortKey) {
+      filtered.sort((a, b) => {
+        const fieldA = a[this.sortKey as SortableFields];
+        const fieldB = b[this.sortKey as SortableFields];
+  
+        if (typeof fieldA === 'string' && typeof fieldB === 'string') {
+          return this.sortAsc ? fieldA.localeCompare(fieldB) : fieldB.localeCompare(fieldA);
+        } else if (typeof fieldA === 'number' && typeof fieldB === 'number') {
+          return this.sortAsc ? fieldA - fieldB : fieldB - fieldA;
+        } else {
+          return 0;
+        }
+      });
+    }
+  
+    this.totalFilteredCourses = filtered.length;
+    this.totalPages = Math.ceil(this.totalFilteredCourses / this.itemsPerPage);
+    this.currentPage = 1;
+    this.updateIndexes();
+    this.filteredCoursesList = this.paginate(filtered);
+  }
 
 paginate(courses: Courses[]): Courses[] {
   const start = (this.currentPage - 1) * this.itemsPerPage;
