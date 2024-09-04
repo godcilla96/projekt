@@ -27,7 +27,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100px; /* Adjust height for gradient effect */
+  height: 100px;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
@@ -78,6 +78,7 @@ input {
 
 .course-list th {
   background-color: #f2f2f2;
+  cursor: pointer;
 }
 
 .course-item button {
@@ -170,11 +171,11 @@ input {
 @media (min-width: 1200px) {
   .main {
     margin: 0 auto;
-    width: 50vw; /* Adjust the width as needed */
+    width: 50vw; 
   }
 
   .course-list {
-    width: 70vw; /* Adjust the width as needed */
+    width: 70vw; 
     margin: 0 auto;
   }
 

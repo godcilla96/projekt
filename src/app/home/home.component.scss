@@ -19,20 +19,20 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 100px; // Justerar höjden beroende på hur mycket avtoning du vill ha 
+      height: 100px; 
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
     }
   }
 
           @media (min-width: 768px) {
             .img-container img {
-                height: 400px; /* Fixed height for larger screens */
+                height: 400px; 
             }
         }
 
         @media (max-width: 767px) {
             .img-container img {
-                height: auto; /* Adjust automatically for smaller screens */
+                height: auto; 
             }
         }
 
@@ -104,7 +104,7 @@
 }
 
 .gif-container::after {
-    //content: attr(alt);
+
     position: absolute;
     bottom: 10px;
     left: 50%;
