@@ -3,6 +3,7 @@ import { Courses } from '../model/courses';
 import { CoursedataService } from '../services/coursedata.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 //sorteringsnycklar
 type SortableFields = 'courseCode' | 'courseName' | 'points' | 'subject';
@@ -11,7 +12,7 @@ type SortableFields = 'courseCode' | 'courseName' | 'points' | 'subject';
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatSnackBarModule],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss'
 })
@@ -34,7 +35,7 @@ export class CoursesComponent implements OnInit {
   endIndex: number = 50; 
   
 
-  constructor(private coursedataservice : CoursedataService) {}
+  constructor(private coursedataservice : CoursedataService, private snackBar: MatSnackBar) {}
 
 
 
@@ -114,6 +115,13 @@ saveToLocalStorage(course: Courses) {
   if (!savedCourses.some((savedCourse: Courses) => savedCourse.courseCode === course.courseCode)) {
     savedCourses.push(course);
     localStorage.setItem('savedCourses', JSON.stringify(savedCourses));
+
+    //popup-ruta
+    this.snackBar.open('Kurs sparad', 'OK', {
+      duration: 3000,  
+      verticalPosition: 'top',  
+      horizontalPosition: 'center',
+    });
   }
 }
 }

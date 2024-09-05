@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Courses } from '../model/courses';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-framework',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatSnackBarModule],
   templateUrl: './framework.component.html',
-  styleUrls: ['./framework.component.scss']
+  styleUrls: ['./framework.component.scss'],
+
+
 })
+
+
 export class FrameworkComponent implements OnInit {
   savedCourses: Courses[] = [];
   totalPoints: number = 0;
+
+  constructor(private snackBar: MatSnackBar) {} 
 
   ngOnInit(): void {
     this.loadSavedCourses();
@@ -45,11 +52,24 @@ export class FrameworkComponent implements OnInit {
     this.savedCourses = this.savedCourses.filter(course => course.courseCode !== courseCode);
     localStorage.setItem('savedCourses', JSON.stringify(this.savedCourses));
     this.loadSavedCourses(); //laddar om poängen när en kurs tas bort
+
+        //popup-ruta
+        this.snackBar.open('Kurs raderad', 'OK', {
+          duration: 3000,  
+          verticalPosition: 'top',  
+          horizontalPosition: 'center',
+        });
   }
 
   deleteAllCourses(): void {
     this.savedCourses = [];
     localStorage.removeItem('savedCourses');
     this.totalPoints = 0;
+            //popup-ruta
+            this.snackBar.open('Alla kurser raderade', 'OK', {
+              duration: 3000,  
+              verticalPosition: 'top',  
+              horizontalPosition: 'center',
+            });
   }
 }
